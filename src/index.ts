@@ -39,10 +39,11 @@ createConnection().then(async connection => {
 
     // Start the server
     app.listen(PORT, () => {
-        console.log('App running on port', PORT)
-        console.log(`${CONFIG.protocol}://localhost:${PORT}${PATH}`)
-        if (IP)
-        console.log(`${CONFIG.protocol}://${IP}:${PORT}${PATH}`)
+        console.log('App running:')
+        console.log(`\nBase URL: ${CONFIG.protocol}://localhost:${PORT}`)
+        if (IP) console.log(`With IPA: ${CONFIG.protocol}://${IP}:${PORT}`)
+        console.log(`\nGraphQL: ${CONFIG.protocol}://localhost:${PORT}${PATH}`)
+        console.log(`\nDB Example: ${CONFIG.protocol}://localhost:${PORT}/db`)
     })
 
 }).catch(error => console.log(error))
