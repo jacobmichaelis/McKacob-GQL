@@ -1,5 +1,5 @@
 {
-   "name": "McKacob-GQL",
+   "name": "mckacob-gql",
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
@@ -21,6 +21,8 @@
       "typeorm": "0.2.18"
    },
    "scripts": {
-      "start": "ts-node src/index.ts"
+      "start": "ts-node src/index.ts",
+      "prod": "node build/index.js",
+      "postinstall": "tsc"
    }
 }
