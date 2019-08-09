@@ -30,7 +30,7 @@ createConnection().then(async connection => {
     // server.applyMiddleware({ app })
 
     app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname + '/index.html'))
+        res.sendFile(path.join(__dirname + '/../index.html'))
     })
 
     app.get('/db', async (req, res) => {
