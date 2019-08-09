@@ -12,7 +12,11 @@ const CONFIG = {
   protocol: (env != 'production' ? 'http' : 'https'),
   connectionConfig: (env == 'production' ? {
     type: "postgres",
-    database: "supermelons",
+    host: 'ec2-54-204-35-248.compute-1.amazonaws.com',
+    port: 5432,
+    username: 'bqglturyuoehjn',
+    password: '29addc9e37bbc393894ec065e1dbe2753b267a73af5bd239a00f5d6935486953',
+    database: "d27f76ir5cn5cg",
     ssl: env == 'production',
     synchronize: true,
     logging: false,
