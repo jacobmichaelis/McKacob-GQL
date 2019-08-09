@@ -13,9 +13,7 @@ import { IP, PORT, PATH, CONFIG } from './db-config'
 // import { authorize } from './resolvers/user-resolver'
 import { Test } from "./entity/Test";
 
-const connection = createConnection(CONFIG.connectionConfig as PostgresConnectionOptions) // TODO: try catch
- 
- connection.then(async conn => {
+createConnection(CONFIG.connectionConfig as PostgresConnectionOptions).then(async connection => {
 
     // const server = new ApolloServer({
     //     typeDefs,
