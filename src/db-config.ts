@@ -21,18 +21,18 @@ const CONFIG = {
     synchronize: true,
     logging: false,
     entities: [
-      "src/entity/**/*.ts"
+      "build/entity/**/*.js"
     ],
     migrations: [
-      "src/migration/**/*.ts"
+      "build/migration/**/*.js"
     ],
     subscribers: [
-      "src/subscriber/**/*.ts"
+      "build/subscriber/**/*.js"
     ],
     cli: {
-      entitiesDir: "src/entity",
-      migrationsDir: "src/migration",
-      subscribersDir: "src/subscriber"
+      entitiesDir: "build/entity",
+      migrationsDir: "build/migration",
+      subscribersDir: "build/subscriber"
     }
   }: {
     type: "postgres",

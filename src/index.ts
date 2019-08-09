@@ -13,7 +13,6 @@ import { IP, PORT, PATH, CONFIG } from './db-config'
 // import { authorize } from './resolvers/user-resolver'
 import { Test } from "./entity/Test";
 
-console.log(CONFIG.env)
 const connection = createConnection(CONFIG.connectionConfig as PostgresConnectionOptions) // TODO: try catch
  
  connection.then(async conn => {
