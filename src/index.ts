@@ -1,5 +1,6 @@
 import "reflect-metadata"
 import { createConnection, ConnectionOptions } from "typeorm"
+import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 
 import * as express from "express"
 import { ApolloServer } from 'apollo-server-express'
@@ -13,7 +14,7 @@ import { IP, PORT, PATH, CONFIG } from './db-config'
 import { Test } from "./entity/Test";
 
 console.log(CONFIG.env)
-const connection = createConnection(CONFIG.connectionConfig as ConnectionOptions) // TODO: try catch
+const connection = createConnection(CONFIG.connectionConfig as PostgresConnectionOptions) // TODO: try catch
  
  connection.then(async conn => {
 

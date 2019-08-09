@@ -12,11 +12,8 @@ const CONFIG = {
   protocol: (env != 'production' ? 'http' : 'https'),
   connectionConfig: (env == 'production' ? {
     type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "supermelons",
-    password: "yomama",
     database: "supermelons",
+    ssl: env == 'production',
     synchronize: true,
     logging: false,
     entities: [
