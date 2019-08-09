@@ -1,48 +1,48 @@
-import "reflect-metadata";
-import {createConnection} from "typeorm";
-import * as express from "express";
-import * as bodyParser from "body-parser";
-import {Request, Response} from "express";
-import {Routes} from "./routes";
-import {User} from "./entity/User";
+import "reflect-metadata"
+import { createConnection } from "typeorm"
+
+import * as express from "express"
+import { ApolloServer } from 'apollo-server-express'
+import * as path from 'path'
+import { IP, PORT, PATH, CONFIG } from './db-config'
+
+// import typeDefs from './types'
+// import resolvers from './resolvers'
+
+// import { authorize } from './resolvers/user-resolver'
+import { Test } from "./entity/Test";
 
 createConnection().then(async connection => {
 
-    // create express app
-    const app = express();
-    app.use(bodyParser.json());
+    // const server = new ApolloServer({
+    //     typeDefs,
+    //     resolvers,
+    //     playground: {
+    //         version: '1.7.25', //  ideally, this issue goes away soon
+    //     },
+    //     context: ({ req }) => {
+    //         const token = req.headers.authorization || ''
+    //         return authorize(token)
+    //     }
+    // })
 
-    // register express routes from defined application routes
-    Routes.forEach(route => {
-        (app as any)[route.method](route.route, (req: Request, res: Response, next: Function) => {
-            const result = (new (route.controller as any))[route.action](req, res, next);
-            if (result instanceof Promise) {
-                result.then(result => result !== null && result !== undefined ? res.send(result) : undefined);
+    const app = express()
+    // server.applyMiddleware({ app })
 
-            } else if (result !== null && result !== undefined) {
-                res.json(result);
-            }
-        });
-    });
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname + '/index.html'))
+    })
 
-    // setup express app here
-    // ...
+    app.get('/db', async (req, res) => {
+        res.json(await Test.find())
+    })
 
-    // start express server
-    app.listen(3000);
+    // Start the server
+    app.listen(PORT, () => {
+        console.log('App running on port', PORT)
+        console.log(`${CONFIG.protocol}://localhost:${PORT}${PATH}`)
+        if (IP)
+        console.log(`${CONFIG.protocol}://${IP}:${PORT}${PATH}`)
+    })
 
-    // insert new users for test
-    await connection.manager.save(connection.manager.create(User, {
-        firstName: "Timber",
-        lastName: "Saw",
-        age: 27
-    }));
-    await connection.manager.save(connection.manager.create(User, {
-        firstName: "Phantom",
-        lastName: "Assassin",
-        age: 24
-    }));
-
-    console.log("Express server has started on port 3000. Open http://localhost:3000/users to see results");
-
-}).catch(error => console.log(error));
+}).catch(error => console.log(error))

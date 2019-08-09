@@ -8,11 +8,17 @@
       "typescript": "3.3.3333"
    },
    "dependencies": {
-      "typeorm": "0.2.18",
-      "reflect-metadata": "^0.1.10",
-      "pg": "^7.3.0",
+      "address": "^1.1.0",
+      "apollo-server-express": "^2.8.1",
+      "body-parser": "^1.18.1",
+      "default-gateway": "^5.0.2",
       "express": "^4.15.4",
-      "body-parser": "^1.18.1"
+      "graphql": "^14.4.2",
+      "jsonwebtoken": "^8.5.1",
+      "lodash": "^4.17.15",
+      "pg": "^7.3.0",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.18"
    },
    "scripts": {
       "start": "ts-node src/index.ts"
