@@ -7,7 +7,6 @@
    "database": "supermelons",
    "synchronize": true,
    "logging": false,
-   "extra": { "ssl": true },
    "entities": [
       "src/entity/**/*.ts"
    ],
