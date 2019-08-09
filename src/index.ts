@@ -12,7 +12,10 @@ import { IP, PORT, PATH, CONFIG } from './db-config'
 // import { authorize } from './resolvers/user-resolver'
 import { Test } from "./entity/Test";
 
-createConnection().then(async connection => {
+console.log(CONFIG.env)
+const connection = createConnection(CONFIG.connectionConfig as ConnectionOptions) // TODO: try catch
+ 
+ connection.then(async conn => {
 
     // const server = new ApolloServer({
     //     typeDefs,
