@@ -5,7 +5,6 @@ import * as express from "express"
 import { ApolloServer } from 'apollo-server-express'
 import * as path from 'path'
 import { IP, PORT, PATH, CONFIG } from './db-config'
-import * as pgConnection from 'pg-connection-string'
 
 // import typeDefs from './types'
 // import resolvers from './resolvers'
@@ -13,20 +12,7 @@ import * as pgConnection from 'pg-connection-string'
 // import { authorize } from './resolvers/user-resolver'
 import { Test } from "./entity/Test";
 
-const connectionOptions = pgConnection.parse(process.env.DATABASE_URL)
-
-createConnection(<ConnectionOptions>{
-    driver: {
-        type: process.env.TYPEORM_DRIVER_TYPE,
-        host: connectionOptions.host,
-        port: connectionOptions.port || 5432,
-        username: connectionOptions.user,
-        password: connectionOptions.password,
-        database: connectionOptions.database
-    },
-    entities: [...this.entities],
-    subscribers: [...this.subscribers]
-}).then(async connection => {
+createConnection().then(async connection => {
 
     // const server = new ApolloServer({
     //     typeDefs,
