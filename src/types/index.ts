@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-express'
 import testType from './test-type'
-import { userType } from './user-type'
+import userType from './user-type'
 
 const baseType = gql`
   type Query { base: String }
