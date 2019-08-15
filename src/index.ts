@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import { createConnection, ConnectionOptions } from 'typeorm'
-import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions'
 
 import * as express from 'express'
 import * as path from 'path'

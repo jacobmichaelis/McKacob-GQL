@@ -1,6 +1,6 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from "typeorm"
-import { User } from "./User";
-import { Application } from "./Application";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from 'typeorm'
+import { User } from './User'
+import { Application } from './Application'
 
 @Entity()
 export class Environment extends BaseEntity {
