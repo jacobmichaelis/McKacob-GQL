@@ -6,58 +6,36 @@ let env = process.env.NODE_ENV
 const IP = address.ip(result && result.interface) || undefined
 const PORT = process.env.PORT || 534
 const PATH = '/graphql'
+const SECRET = process.env.MCKACOB_SECRET
 const CONFIG = {
   env: env,
   ssl: env == 'production',
-  protocol: (env != 'production' ? 'http' : 'https'),
-  connectionConfig: (env == 'production' ? {
-    type: 'postgres',
-    host: 'ec2-54-204-35-248.compute-1.amazonaws.com',
-    port: 5432,
-    username: 'bqglturyuoehjn',
-    password: '29addc9e37bbc393894ec065e1dbe2753b267a73af5bd239a00f5d6935486953',
-    database: 'd27f76ir5cn5cg',
+  protocol: process.env.DB_PROTOCOL || 'http',
+  connectionConfig: {
+    type: process.env.DB_ADAPTER,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT || 5432,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     ssl: env == 'production',
     synchronize: true,
     logging: false,
     entities: [
-      'build/entity/**/*.js'
+      process.env.DB_ENTITY_DIR
     ],
     migrations: [
-      'build/migration/**/*.js'
+      process.env.DB_MIGRATION_DIR
     ],
     subscribers: [
-      'build/subscriber/**/*.js'
+      process.env.DB_SUBSCRIBER_DIR
     ],
     cli: {
       entitiesDir: 'build/entity',
       migrationsDir: 'build/migration',
       subscribersDir: 'build/subscriber'
     }
-  }: {
-    type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'supermelons',
-    password: 'yomama',
-    database: 'supermelons',
-    synchronize: true,
-    logging: false,
-    entities: [
-      'src/entity/**/*.ts'
-    ],
-    migrations: [
-      'src/migration/**/*.ts'
-    ],
-    subscribers: [
-      'src/subscriber/**/*.ts'
-    ],
-    cli: {
-      entitiesDir: 'src/entity',
-      migrationsDir: 'src/migration',
-      subscribersDir: 'src/subscriber'
-    }
-  }),
+  },
 }
 
-export { IP, PORT, PATH, CONFIG }
+export { IP, PORT, PATH, SECRET, CONFIG }
