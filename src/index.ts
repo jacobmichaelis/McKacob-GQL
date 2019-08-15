@@ -1,17 +1,14 @@
-import "reflect-metadata"
-import { createConnection, ConnectionOptions } from "typeorm"
-import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
+import 'reflect-metadata'
+import { createConnection, ConnectionOptions } from 'typeorm'
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
-import * as express from "express"
-import { ApolloServer } from 'apollo-server-express'
+import * as express from 'express'
 import * as path from 'path'
 import { IP, PORT, PATH, CONFIG } from './db-config'
 
-// import typeDefs from './types'
-// import resolvers from './resolvers'
-
-// import { authorize } from './resolvers/user-resolver'
-import { Test } from "./entity/Test";
+import { Test } from './entity/Test'
+import typeDefs from './types'
+import resolvers from './resolvers'
 
 createConnection(CONFIG.connectionConfig as PostgresConnectionOptions).then(async connection => {
 
@@ -38,7 +35,6 @@ createConnection(CONFIG.connectionConfig as PostgresConnectionOptions).then(asyn
         res.json(await Test.find())
     })
 
-    // Start the server
     app.listen(PORT, () => {
         console.log('App running:')
         console.log(`\nBase URL: ${CONFIG.protocol}://localhost:${PORT}`)

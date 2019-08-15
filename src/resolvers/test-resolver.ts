@@ -1,40 +1,36 @@
-// import { queryOne, queryMany } from '../db/db-config'
+import { Test } from '../entity/Test'
 
-// const returnOne = "RETURNING id, username, password, encrypted"
-// const returnAll = "RETURNING *"
+const returnOne = "RETURNING id, username, password, encrypted"
+const returnAll = "RETURNING *"
 
-// function getTestData() {
-//   return queryMany('SELECT * FROM test_table;')
-// }
+async function getTestData() {
+  return await Test.find()
+}
 
-// function login(root, args) {
-//   let id = args.id
-//   let username = args.username
-//   let password = args.password
-//   let encrypted = (args.encrypted) ? args.encrypted : password
-//   if (id) {
-//     return queryOne(`INSERT INTO test_table(id, username, password, encrypted) VALUES ('${id}', '${username}', '${password}', '${encrypted}') ${returnOne};`)
-//   } else {
-//     return queryOne(`INSERT INTO test_table(username, password, encrypted) VALUES ('${username}', '${password}', '${encrypted}') ${returnOne};`)
-//   }
-// }
+async function login(root, args) {
+  let test = new Test()
+  if (args.id) test.id = args.id
+  test.username = args.username
+  test.password = args.password
+  test.encrypted = (args.encrypted) ? args.encrypted : args.password
+  await test.save()
+  return test
+}
 
-// function deleteUser(root, args) {
-//   console.log(args)
-//   let id = args.id
-//   let q = queryOne(`DELETE FROM test_table WHERE id = '${id}' ${returnAll};`)
-//   console.log(q)
-//   return q
-// }
+async function deleteUser(root, args) {
+  let test = await Test.findOne({ id: args.id })
+  test.remove()
+  return test
+}
 
-// const testResolver = {
-//   Query: {
-//     test: () => getTestData()
-//   },
-//   Mutation: {
-//     testLogin: (root, args) => login(root, args),
-//     deleteTestUser: (root, args) => deleteUser(root, args)
-//   }
-// }
+const testResolver = {
+  Query: {
+    test: () => getTestData()
+  },
+  Mutation: {
+    testLogin: (root, args) => login(root, args),
+    deleteTestUser: (root, args) => deleteUser(root, args)
+  }
+}
 
-// export default testResolver
+export default testResolver
