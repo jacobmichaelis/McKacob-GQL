@@ -1,8 +1,5 @@
 import { Test } from '../entity/Test'
 
-const returnOne = 'RETURNING id, username, password, encrypted'
-const returnAll = 'RETURNING *'
-
 async function getTestData() {
   return await Test.find()
 }
