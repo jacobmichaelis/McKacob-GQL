@@ -2,11 +2,11 @@
 // import * as authConfig from '../db/db-credentials.json'
 // import * as jwt from 'jsonwebtoken'
 
-// const returnOne = "RETURNING id, email, encrypted, first_name, last_name, phone, street, city, state, zip, app, env, role"
-// const returnAll = "RETURNING *"
+// const returnOne = 'RETURNING id, email, encrypted, first_name, last_name, phone, street, city, state, zip, app, env, role'
+// const returnAll = 'RETURNING *'
 
 // function getAll() {
-//   let result = queryMany('SELECT * FROM "user";')
+//   let result = queryMany('SELECT * FROM 'user';')
 //   result.then((users) => {
 //     users.forEach((user) => {
 //       user.encrypted = undefined
@@ -34,10 +34,10 @@
 // function authenticate(root, args) {
 //   let email = args.email
 //   let password = args.password
-//   console.log("Enter authenticate")
-//   console.log("Email: " + email + " Password: " + password)
+//   console.log('Enter authenticate')
+//   console.log('Email: ' + email + ' Password: ' + password)
 //   if (!email || !password) return null
-//   let result = queryOne(`SELECT * FROM "user" WHERE email = '${email}' AND encrypted = crypt('${password}', encrypted);`)
+//   let result = queryOne(`SELECT * FROM 'user' WHERE email = '${email}' AND encrypted = crypt('${password}', encrypted);`)
 //   console.log(result)
 //   result.then((user) => {
 //     user.encrypted = undefined
@@ -62,7 +62,7 @@
 //   let app = args.app
 //   let role = args.role
 //   if (email && password && firstName && lastName) {
-//     let result = queryOne(`INSERT INTO "user"(email, encrypted, first_name, last_name, phone, street, city, state, zip, env, app, role) `
+//     let result = queryOne(`INSERT INTO 'user'(email, encrypted, first_name, last_name, phone, street, city, state, zip, env, app, role) `
 //       + `VALUES ('${email}', crypt('${password}', gen_salt('bf', 8)), '${firstName}', '${lastName}', `
 //       +`'${phone}', '${street}', '${city}', '${state}', '${zip}', '${env}', '${app}', '${role}') `
 //       +`${returnOne};`)
@@ -78,15 +78,15 @@
 
 // function deleteOne(root, args, context) {
 //   if (context.authorized && context.role)
-//     return queryOne(`DELETE FROM "user" WHERE id = '${args.id}' ${returnOne};`)
+//     return queryOne(`DELETE FROM 'user' WHERE id = '${args.id}' ${returnOne};`)
 // }
 
 // function deleteAll(root, args, context) {
-//   return queryMany(`DELETE FROM "user" WHERE role = 'user' ${returnAll};`)
+//   return queryMany(`DELETE FROM 'user' WHERE role = 'user' ${returnAll};`)
 // }
 
 // function byEmail(email) {
-//   return queryOne(`SELECT * FROM "user" WHERE email = ${email}`)
+//   return queryOne(`SELECT * FROM 'user' WHERE email = ${email}`)
 // }
 
 // function generateToken(email, firstName, lastName, role) {

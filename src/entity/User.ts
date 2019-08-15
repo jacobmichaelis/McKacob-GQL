@@ -1,12 +1,12 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
-import { Application } from "./Application"
-import { Environment } from "./Environment"
-import { Role } from "./Role"
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+import { Application } from './Application'
+import { Environment } from './Environment'
+import { Role } from './Role'
 
 @Entity()
 export class User extends BaseEntity {
 
-    @PrimaryGeneratedColumn("uuid")
+    @PrimaryGeneratedColumn('uuid')
     id: number
 
     @Column({ unique: true })

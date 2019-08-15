@@ -11,51 +11,51 @@ const CONFIG = {
   ssl: env == 'production',
   protocol: (env != 'production' ? 'http' : 'https'),
   connectionConfig: (env == 'production' ? {
-    type: "postgres",
+    type: 'postgres',
     host: 'ec2-54-204-35-248.compute-1.amazonaws.com',
     port: 5432,
     username: 'bqglturyuoehjn',
     password: '29addc9e37bbc393894ec065e1dbe2753b267a73af5bd239a00f5d6935486953',
-    database: "d27f76ir5cn5cg",
+    database: 'd27f76ir5cn5cg',
     ssl: env == 'production',
     synchronize: true,
     logging: false,
     entities: [
-      "build/entity/**/*.js"
+      'build/entity/**/*.js'
     ],
     migrations: [
-      "build/migration/**/*.js"
+      'build/migration/**/*.js'
     ],
     subscribers: [
-      "build/subscriber/**/*.js"
+      'build/subscriber/**/*.js'
     ],
     cli: {
-      entitiesDir: "build/entity",
-      migrationsDir: "build/migration",
-      subscribersDir: "build/subscriber"
+      entitiesDir: 'build/entity',
+      migrationsDir: 'build/migration',
+      subscribersDir: 'build/subscriber'
     }
   }: {
-    type: "postgres",
-    host: "localhost",
+    type: 'postgres',
+    host: 'localhost',
     port: 5432,
-    username: "supermelons",
-    password: "yomama",
-    database: "supermelons",
+    username: 'supermelons',
+    password: 'yomama',
+    database: 'supermelons',
     synchronize: true,
     logging: false,
     entities: [
-      "src/entity/**/*.ts"
+      'src/entity/**/*.ts'
     ],
     migrations: [
-      "src/migration/**/*.ts"
+      'src/migration/**/*.ts'
     ],
     subscribers: [
-      "src/subscriber/**/*.ts"
+      'src/subscriber/**/*.ts'
     ],
     cli: {
-      entitiesDir: "src/entity",
-      migrationsDir: "src/migration",
-      subscribersDir: "src/subscriber"
+      entitiesDir: 'src/entity',
+      migrationsDir: 'src/migration',
+      subscribersDir: 'src/subscriber'
     }
   }),
 }
