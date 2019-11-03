@@ -37,5 +37,12 @@ const CONFIG = {
     }
   },
 }
+const CONNECTION_CALLBACK = () => {
+  console.log('App running:')
+  console.log(`\nBase URL: ${CONFIG.protocol}://localhost:${PORT}`)
+  if (IP) console.log(`With IPA: ${CONFIG.protocol}://${IP}:${PORT}`)
+  console.log(`\nGraphQL: ${CONFIG.protocol}://localhost:${PORT}${PATH}`)
+  console.log(`\nDB Example: ${CONFIG.protocol}://localhost:${PORT}/db`)
+}
 
-export { IP, PORT, PATH, SECRET, CONFIG }
+export { IP, PORT, PATH, SECRET, CONFIG, CONNECTION_CALLBACK }

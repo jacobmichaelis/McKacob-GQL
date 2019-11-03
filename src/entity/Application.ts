@@ -1,10 +1,10 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { Entity, BaseEntity, Column, OneToMany, PrimaryColumn } from 'typeorm'
 import { User } from './User'
 
 @Entity()
 export class Application extends BaseEntity {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     tag: string
 
     @Column({ unique: true })
@@ -14,7 +14,7 @@ export class Application extends BaseEntity {
     description: string
 
     @Column({ nullable: true })
-    url: number
+    url: string
 
     @OneToMany(type => User, user => user.app)
     users: User[]

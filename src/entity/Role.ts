@@ -1,10 +1,10 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { Entity, BaseEntity, Column, OneToMany, PrimaryColumn } from 'typeorm'
 import { User } from './User'
 
 @Entity()
 export class Role extends BaseEntity {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     role: string
 
     @Column({ nullable: true })

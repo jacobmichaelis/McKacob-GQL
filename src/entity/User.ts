@@ -1,7 +1,8 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm'
 import { Application } from './Application'
 import { Environment } from './Environment'
 import { Role } from './Role'
+import * as bcrypt from 'bcryptjs'
 
 @Entity()
 export class User extends BaseEntity {
@@ -13,7 +14,7 @@ export class User extends BaseEntity {
     email: string
 
     @Column()
-    encrypted: string
+    password: string
 
     @Column()
     firstName: string
@@ -36,12 +37,23 @@ export class User extends BaseEntity {
     @Column({ nullable: true })
     zip: string
 
-    @ManyToOne(type => Application, app => app.tag)
+    @ManyToOne(type => Application, app => app.tag, { eager: true })
+    @JoinColumn({ name: 'app' })
     app: Application
 
-    @ManyToOne(type => Environment, env => env.env)
+    @ManyToOne(type => Environment, env => env.env, { eager: true })
+    @JoinColumn({ name: 'env' })
     env: Environment
 
-    @ManyToOne(type => Role, role => role.role)
+    @ManyToOne(type => Role, role => role.role, { eager: true })
+    @JoinColumn({ name: 'role' })
     role: Role
+
+    hashPassword() {
+        this.password = bcrypt.hashSync(this.password, 17)
+    }
+
+    checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {
+        return bcrypt.compareSync(unencryptedPassword, this.password)
+    }
 }
