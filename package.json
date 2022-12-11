@@ -15,7 +15,7 @@
       "body-parser": "^1.18.1",
       "default-gateway": "^5.0.2",
       "dotenv": "^8.1.0",
-      "express": "^4.15.4",
+      "express": "^4.17.3",
       "graphql": "^14.4.2",
       "jsonwebtoken": "^8.5.1",
       "lodash": "^4.17.15",
